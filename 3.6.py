@@ -1,7 +1,7 @@
 import numpy as np
 
-x = list(map(int, input().split()))
-y = list(map(int, input().split()))
+x = list(map(float, input().split()))
+y = list(map(float, input().split()))
 if len(x) == len(y):
     X = np.array(x)
     Y = np.array(y)
