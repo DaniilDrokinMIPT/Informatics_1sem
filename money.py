@@ -1,18 +1,17 @@
-b = int(input())
-a = [1, 2, 5, 10, 50, 100, 500, 1000]
-a = a[::-1]
-summ = dict()
-cash = b
-i = 0
-while cash > 0:
-    if cash >= a[i]:
-        cash -= a[i]
-        if a[i] in summ.keys():
-            summ[a[i]] += 1
-        else:
-            summ[a[i]] = 1
-    else:
-        i += 1
-for key, val in summ.items():
-    if val != 0:
-        print(key, val, sep=':')
+def change(money, c):
+    length = money + 1
+    table = [0] * length
+    inf = 10 ** 20
+    for i in range(1, length):
+        table[i] = inf
+    table[0] = 0
+    for m in range(1, length):
+        for i in c:
+            if i <= m:
+                table[m] = min(table[m], 1 + table[m - i])
+    return table[money]
+
+
+a = int(input())
+b = list(map(int, input().split()))
+print(change(a, b))
