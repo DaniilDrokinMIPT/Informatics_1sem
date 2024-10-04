@@ -2,7 +2,7 @@ def ra(n):
     ch = dict()
     i = 2
     while n > 1:
-        if n % i == 0:
+        while n % i == 0:
             if i in ch.keys():
                 ch[i] += 1
             else:
