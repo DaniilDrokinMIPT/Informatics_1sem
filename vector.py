@@ -10,22 +10,17 @@ class Vector:
     def __abs__(self):
         return math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
 
-    def __plus__(self, other):
+    def __add__(self, other):
+        if type(other) != Vector:
+            return 'ERROR'
         return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
 
-    def __rplus__(self, other1, other2, other3):
-        return Vector(self.x + other1, self.y + other2, self.z + other3)
+    def scalar(self, other):
+        return self.x * other.x + self.y * other.y + self.z * other.z
 
-    def __minus__(self, other):
-        return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
-
-    def __rminus__(self, other1, other2, other3):
-        return Vector(self.x - other1, self.y - other2, self.z - other3)
-
-    def __scalar__(self, other):
-        return Vector(self.x * other.x, self.y * other.y, self.z * other.z)
-
-    def __vect2__(self, a):
+    def vect2(self, a):
+        if type(a) != float and type(a) != int:
+            return 'ERROR'
         return Vector(self.x * a, self.y * a, self.z * a)
 
     def __str__(self):
@@ -34,9 +29,16 @@ class Vector:
 
 A = Vector(1, 0, 1)
 print(A)
-B = A.__scalar__(A.__vect2__(2))
+B = A + Vector(1, 1, 1)
 print(B)
-C = A.__rplus__(1, 2, 3)
+C = A.scalar(B)
 print(C)
-D = A.__plus__(Vector(-1, -2, -3))
+D = A + 1
 print(D)
+F = A + 'р'
+print(F)
+C = Vector(-1, -1, -2)
+print(A + C)
+print(A.vect2(3))
+print(A.vect2('р'))
+print(abs(C))
